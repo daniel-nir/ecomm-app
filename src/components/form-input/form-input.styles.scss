@@ -21,12 +21,12 @@ $main-color: rgb(73, 127, 245);
     width: 100%;
     border: none;
     border-radius: 0;
-    border-bottom: 1px solid $sub-color;
+    border-bottom: 2px solid $sub-color;
     margin: 25px 0;
 
     &:focus {
       outline: none;
-      border-bottom: 1px solid $main-color;
+      border-bottom: 2px solid $main-color;
     }
 
     &:focus ~ .form-input-label {

@@ -1,59 +1,54 @@
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { useContext } from "react";
 import { CartContext } from "../../contexts/cart.context";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
-import { useNavigate } from "react-router-dom";
-import "./checkout.styles.scss";
+import {
+  CheckoutContainer,
+  CheckoutHeader,
+  HeaderBlock,
+  CheckoutLink,
+  CheckoutTotal,
+} from "./checkout.styles";
 
 const Checkout = () => {
   const { cartItems, cartTotal /* setIsCartOpen */ } = useContext(CartContext);
 
-  const navigate = useNavigate();
-  const goToShopHandler = () => navigate("/shop");
-
-  /*  useEffect(() => {
-    setIsCartOpen(false);
-  }, []); */
-
   return (
-    <div className="checkout-container">
+    <CheckoutContainer>
       {cartItems.length ? (
         <Fragment>
-          <div className="checkout-header">
-            <div className="header-block">
+          <CheckoutHeader>
+            <HeaderBlock>
               <span>Product</span>
-            </div>
-            <div className="header-block">
+            </HeaderBlock>
+            <HeaderBlock>
               <span>Description</span>
-            </div>
-            <div className="header-block">
+            </HeaderBlock>
+            <HeaderBlock>
               <span>quantity</span>
-            </div>
-            <div className="header-block">
+            </HeaderBlock>
+            <HeaderBlock>
               <span>Price</span>
-            </div>
-            <div className="header-block">
+            </HeaderBlock>
+            <HeaderBlock>
               <span>Remove</span>
-            </div>
-          </div>
+            </HeaderBlock>
+          </CheckoutHeader>
           {cartItems.map((cartItem) => {
             return <CheckoutItem key={cartItem.id} cartItem={cartItem} />;
           })}
-          <span className="total">Total: {cartTotal} ILS</span>
+          <CheckoutTotal>Total: ₪ {cartTotal}</CheckoutTotal>
         </Fragment>
       ) : (
         <div>
           <h1>Your cart is empty</h1>
           <span>
-            Press
-            <span className="nav" onClick={goToShopHandler}>
-              here
-            </span>
+            Press <CheckoutLink to="/shop">here </CheckoutLink>
             to continue shopping
           </span>
         </div>
       )}
-    </div>
+    </CheckoutContainer>
   );
 };
 export default Checkout;
